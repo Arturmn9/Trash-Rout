@@ -1,0 +1,13 @@
+id,name,address,city,zip,route_day,paid,over_limit,notes
+1,Client One,350 5th Ave,New York,10118,Monday,yes,no,
+2,Client Two,1 Wall St,New York,10005,Monday,no,no,Bins behind gate
+3,Client Three,200 Central Park W,New York,10024,Monday,yes,yes,Extra bags
+4,Client Four,30 Rockefeller Plaza,New York,10112,Tuesday,no,no,
+5,Client Five,11 Wall St,New York,10005,Tuesday,yes,no,
+6,Client Six,151 W 34th St,New York,10001,Tuesday,no,yes,Over limit twice
+7,Client Seven,1000 5th Ave,New York,10028,Wednesday,yes,no,
+8,Client Eight,4 Pennsylvania Plaza,New York,10001,Wednesday,no,no,
+9,Client Nine,10 Hudson Yards,New York,10001,Thursday,yes,no,
+10,Client Ten,89 E 42nd St,New York,10017,Thursday,no,no,
+11,Client Eleven,1 Bad Fake Address Lane,Nowhereville,00000,Friday,yes,no,Should fail geocoding
+12,Client Twelve,405 Lexington Ave,New York,10174,Friday,no,yes,
