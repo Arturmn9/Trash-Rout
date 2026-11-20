@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "Route App",
+    "slug": "route-app",
+    "version": "1.0.0",
+    "scheme": "routeapp",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "plugins": ["expo-router"]
+  }
+}
