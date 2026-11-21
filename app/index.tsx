@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { View, Text, Pressable, ScrollView, StyleSheet } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import MapView, { Marker } from "react-native-maps";
 import { router, useFocusEffect } from "expo-router";
 import { loadClients } from "../src/db";
@@ -54,8 +55,9 @@ export default function MapScreen()
     }
 
     return (
-        <View style={styles.screen}>
+        <SafeAreaView style={styles.screen}>
             <View style={styles.bar}>
+                <Text style={styles.title}>Route Map</Text>
                 <ScrollView horizontal showsHorizontalScrollIndicator={false}>
                     {days.map((d) => (
                         <Chip key={d} label={d} active={filters.day === d} onPress={() => setFilters({ ...filters, day: d })} />
@@ -67,7 +69,8 @@ export default function MapScreen()
                     <Chip label="Over limit" active={filters.overLimit} onPress={() => setFilters({ ...filters, overLimit: !filters.overLimit })} />
                     <Chip label="Import" active={false} onPress={() => router.push("/import")} />
                 </View>
-                <Text style={styles.count}>{shown.length} stops shown</Text>
+                <Text style={styles.count}>{clients.length} clients loaded, {shown.length} stops shown</Text>
+                {clients.length === 0 && <Text style={styles.empty}>No clients yet. Tap Import and choose a CSV file.</Text>}
             </View>
             <MapView ref={mapRef} style={styles.map}>
                 {shown.map((c) => (
@@ -81,17 +84,19 @@ export default function MapScreen()
                     />
                 ))}
             </MapView>
-        </View>
+        </SafeAreaView>
     );
 }
 
 const styles = StyleSheet.create({
-    screen: { flex: 1 },
+    screen: { flex: 1, backgroundColor: "white" },
     bar: { padding: 8, backgroundColor: "white" },
+    title: { fontSize: 20, fontWeight: "bold", marginBottom: 4 },
     row: { flexDirection: "row", flexWrap: "wrap", marginTop: 4 },
     map: { flex: 1 },
     count: { marginTop: 4, color: "gray" },
-    chip: { paddingHorizontal: 12, paddingVertical: 6, borderRadius: 16, borderWidth: 1, borderColor: "#999", marginRight: 6, marginTop: 4 },
+    empty: { marginTop: 4, color: "#b91c1c" },
+    chip: { paddingHorizontal: 12, paddingVertical: 8, borderRadius: 16, borderWidth: 1, borderColor: "#999", marginRight: 6, marginTop: 4 },
     chipOn: { backgroundColor: "#2563eb", borderColor: "#2563eb" },
     chipText: { color: "black" },
     chipTextOn: { color: "white" },

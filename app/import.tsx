@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { View, Text, Pressable, ScrollView, StyleSheet } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import * as DocumentPicker from "expo-document-picker";
 import { router } from "expo-router";
 import { parseClients } from "../src/csv";
@@ -45,7 +46,11 @@ export default function ImportScreen()
     }
 
     return (
-        <View style={styles.screen}>
+        <SafeAreaView style={styles.screen}>
+            <Pressable onPress={() => router.back()} hitSlop={12}>
+                <Text style={styles.back}>Back</Text>
+            </Pressable>
+            <Text style={styles.title}>Import CSV</Text>
             <Pressable style={styles.button} onPress={pickFile}>
                 <Text style={styles.buttonText}>Choose CSV file</Text>
             </Pressable>
@@ -60,12 +65,14 @@ export default function ImportScreen()
                     <Text key={f} style={styles.failed}>{f}</Text>
                 ))}
             </ScrollView>
-        </View>
+        </SafeAreaView>
     );
 }
 
 const styles = StyleSheet.create({
-    screen: { flex: 1, padding: 16 },
+    screen: { flex: 1, padding: 16, backgroundColor: "white" },
+    back: { color: "#2563eb", fontSize: 16, marginBottom: 8 },
+    title: { fontSize: 22, fontWeight: "bold", marginBottom: 8 },
     button: { backgroundColor: "#2563eb", padding: 14, borderRadius: 8, marginVertical: 8 },
     buttonText: { color: "white", textAlign: "center", fontSize: 16 },
     status: { marginVertical: 8, fontSize: 16 },
